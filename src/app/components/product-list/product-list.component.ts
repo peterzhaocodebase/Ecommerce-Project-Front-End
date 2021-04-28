@@ -12,19 +12,23 @@ export class ProductListComponent implements OnInit {
 
   products: Product[];
   currentCategoryId: number;
+  previousCategoryId: number;
   currentCategoryName: string;
   searchMode: boolean;
   theKeyword: string;
-  //noResultFound : boolean;
- 
-  
-  constructor(private productService: ProductService,private route: ActivatedRoute) { }
+
+  // new properties for pagination
+  thePageNumber: number = 1;
+  thePageSize: number = 12;
+  theTotalElements: number = 0;
+
+  constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
 
   ngOnInit() {
     this.route.paramMap.subscribe(() => {
-      console.log(this.route.paramMap);// it is an Observable, for sub func
-      console.log(this.route.snapshot.paramMap); // it is an paramMap obj for value retriving
+     // console.log(this.route.paramMap);// it is an Observable, for sub func
+     // console.log(this.route.snapshot.paramMap); // it is an paramMap obj for value retriving
       this.listProducts();
     });
   }
@@ -36,7 +40,7 @@ export class ProductListComponent implements OnInit {
   listProducts() {
 
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
-   
+
     if (this.searchMode) {
       this.handleSearchProducts();
     }
@@ -49,13 +53,13 @@ export class ProductListComponent implements OnInit {
   handleSearchProducts() {
 
     const searchword = this.route.snapshot.paramMap.get('keyword');
-    this.theKeyword=searchword;
-    
+    this.theKeyword = searchword;
+
     // now search for the products using keyword
     this.productService.searchProducts(searchword).subscribe(
       data => {
         this.products = data;
-        
+
         // if (this.products.length == 0 ){
         //   console.log("the product array length is 0 " + this.products);
         //   this.noResultFound = true;
@@ -87,11 +91,30 @@ export class ProductListComponent implements OnInit {
     }
 
     // now get the products for the given category id
-    this.productService.getProductList(this.currentCategoryId).subscribe(
-      data => {
-        this.products = data;
-      }
-    )
+    // this.productService.getProductList(this.currentCategoryId).subscribe(
+    //   data => {
+    //     this.products = data;
+    //   }
+    // )
+    if(this.previousCategoryId != this.currentCategoryId){
+    this.previousCategoryId= this.currentCategoryId;
+    this.thePageNumber=1;
+    }
+
+    this.productService.getProductListPaginate(this.thePageNumber - 1,
+      this.thePageSize,
+      this.currentCategoryId)
+      .subscribe(this.processResult());
+    
+  }
+
+  processResult() {
+    return data => {
+      this.products = data._embedded.products;
+      this.thePageNumber = data.page.number + 1;
+      this.thePageSize = data.page.size;
+      this.theTotalElements = data.page.totalElements;
+    };
   }
 
   // listProducts() {

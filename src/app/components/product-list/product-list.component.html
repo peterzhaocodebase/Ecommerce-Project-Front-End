@@ -1,30 +1,20 @@
 <div class="main-content">
     <div class="section-content section-content-p30">
+        <div class="container-fluid">
 
-        <!-- <div *ngIf="searchMode; else elseBlock">
-            <div *ngIf="!noResultFound">
+            <div *ngIf="searchMode; else elseBlock">
                 <h4>Search {{ theKeyword }} Product:</h4>
                 <hr>
             </div>
-        </div>
-        <ng-template #elseBlock>
-            <h4>Current Category: {{ currentCategoryName }}</h4>
-            <hr>
-        </ng-template> -->
+            <ng-template #elseBlock>
+                <h4>Current Category: {{ currentCategoryName }}</h4>
+                <hr>
+            </ng-template>
+            <div *ngIf="products?.length ==0" class="alert alert-warning col-md-12" role="alert">
+                No products found.
+            </div>
 
-        <div *ngIf="searchMode; else elseBlock">
-            <h4>Search {{ theKeyword }} Product:</h4>
-            <hr>
-        </div>
-        <ng-template #elseBlock>
-            <h4>Current Category: {{ currentCategoryName }}</h4>
-            <hr>
-        </ng-template>
-        <div *ngIf="products?.length ==0" class="alert alert-warning col-md-12" role="alert">
-            No products found.
-        </div>
 
-        <div class="container-fluid">
             <div class="row">
 
                 <!-- loop over the collection of products -->
@@ -37,7 +27,7 @@
                         <a routerLink="/products/{{ tempProduct.id }}">
                             <h1>{{ tempProduct.name }}</h1>
                         </a>
-                        
+
                         <div class="price">{{ tempProduct.unitPrice | currency:'USD' }}</div>
                         <a href="#" class="primary-btn">Add to cart</a>
                     </div>
@@ -46,6 +36,16 @@
                     <h4>Sorry, No Result Found</h4>
                 </div> -->
             </div>
+
+            <div class="footer-pagination">
+                <ngb-pagination [(page)]="thePageNumber" 
+                                [pageSize]="thePageSize" 
+                                [collectionSize]="theTotalElements"
+                                (pageChange)="listProducts()">
+                </ngb-pagination>
+            </div>
+
+
         </div>
     </div>
 </div>
