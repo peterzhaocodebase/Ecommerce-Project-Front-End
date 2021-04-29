@@ -51,18 +51,29 @@ export class ProductService {
     );
   }
 
-  searchProducts(theKeyword: string): Observable<Product[]> {
+  // searchProducts(theKeyword: string): Observable<Product[]> {
 
-    // need to build URL based on the keyword 
-    const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`;
+  //   // need to build URL based on the keyword 
+  //   const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`;
 
-    return this.getProducts(searchUrl);
-  }
+  //   return this.getProducts(searchUrl);
+  // }
 
-  private getProducts(searchUrl: string): Observable<Product[]> {
-    return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
-      map(response => response._embedded.products)
-    );
+  // private getProducts(searchUrl: string): Observable<Product[]> {
+  //   return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
+  //     map(response => response._embedded.products)
+  //   );
+  // }
+
+  SearchProductPaginate(thePage: number,
+    thePageSize: number,
+    keyword: string): Observable<GetResponseProducts> {
+
+    // need to build URL based on category id, page and size 
+    const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${keyword}`
+      + `&page=${thePage}&size=${thePageSize}`;
+
+    return this.httpClient.get<GetResponseProducts>(searchUrl);
   }
 
 }

@@ -16,6 +16,7 @@ export class ProductListComponent implements OnInit {
   currentCategoryName: string;
   searchMode: boolean;
   theKeyword: string;
+  previousKeyword: string;
 
   // new properties for pagination
   thePageNumber: number = 1;
@@ -27,15 +28,15 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(() => {
-     // console.log(this.route.paramMap);// it is an Observable, for sub func
-     // console.log(this.route.snapshot.paramMap); // it is an paramMap obj for value retriving
       this.listProducts();
     });
   }
 
-  // ngOnInit() {
-  //   this.listProducts();
-  // }
+  updatePageSize(pageSize:number){
+    this.thePageSize = pageSize;
+    this.thePageNumber = 1;
+    this.listProducts();
+  }
 
   listProducts() {
 
@@ -50,25 +51,33 @@ export class ProductListComponent implements OnInit {
 
   }
 
+  // handleSearchProducts() {
+
+  //   const searchword = this.route.snapshot.paramMap.get('keyword');
+  //   this.theKeyword = searchword;
+
+  //   // now search for the products using keyword
+  //   this.productService.searchProducts(searchword).subscribe(
+  //     data => {
+  //       this.products = data;
+  //     }
+  //   )
+  // }
+
   handleSearchProducts() {
 
     const searchword = this.route.snapshot.paramMap.get('keyword');
     this.theKeyword = searchword;
 
-    // now search for the products using keyword
-    this.productService.searchProducts(searchword).subscribe(
-      data => {
-        this.products = data;
-
-        // if (this.products.length == 0 ){
-        //   console.log("the product array length is 0 " + this.products);
-        //   this.noResultFound = true;
-        //   console.log(this.noResultFound);
-        // }else{
-        //   this.noResultFound = false;
-        // }
-
+    if(this.previousKeyword != this.theKeyword){
+      this.previousKeyword= this.theKeyword;
+      this.thePageNumber=1;
       }
+
+    // now search for the products using keyword
+    this.productService.SearchProductPaginate(this.thePageNumber - 1,
+      this.thePageSize, searchword).subscribe(
+        this.processResult()
     )
   }
 
@@ -90,12 +99,6 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryName = 'Books';
     }
 
-    // now get the products for the given category id
-    // this.productService.getProductList(this.currentCategoryId).subscribe(
-    //   data => {
-    //     this.products = data;
-    //   }
-    // )
     if(this.previousCategoryId != this.currentCategoryId){
     this.previousCategoryId= this.currentCategoryId;
     this.thePageNumber=1;
@@ -117,11 +120,4 @@ export class ProductListComponent implements OnInit {
     };
   }
 
-  // listProducts() {
-  //   this.productService.getProductList().subscribe(
-  //     data => {
-  //       this.products = data;
-  //     }
-  //   )
-  // }
 }

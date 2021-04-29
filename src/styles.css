@@ -976,7 +976,10 @@ footer ul li{
         margin-left:15px
     }
     .footer-pagination{
-        text-align:center
+        text-align:center;
+    }
+    .pageSelector{
+         display:inline-block !important;
     }
     .product-box{
         text-align:centerg
