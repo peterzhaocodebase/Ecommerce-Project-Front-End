@@ -515,7 +515,7 @@ input.au-input.au-input-xl{
     background:#fff
 }
 .main-content.page-m{
-    padding:10% 15%!important
+    padding: 10% 30% 10% 5%
 }
 
 /* 
@@ -745,7 +745,7 @@ a.primary-btn{
     padding:7px 20px;
     text-align:center;
     display:inline-block;
-    color:#fff;
+    color:rgb(89, 150, 241);
     border-radius:2px;
     font-size:14px;
     margin-top:5px
