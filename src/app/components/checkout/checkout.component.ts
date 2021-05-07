@@ -52,6 +52,10 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  ngAfterViewChecked() {
+    window.scrollTo(0, 0);
+  }
+
   copyShippingAddressToBillingAddress(event) {
 
     if (event.target.checked) {

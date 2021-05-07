@@ -26,17 +26,22 @@ export class ProductListComponent implements OnInit {
   theTotalElements: number = 0;
 
   constructor(private productService: ProductService,
-              private cartService: CartService, 
-              private route: ActivatedRoute) { }
+    private cartService: CartService,
+    private route: ActivatedRoute) { }
 
 
   ngOnInit() {
+
     this.route.paramMap.subscribe(() => {
       this.listProducts();
     });
   }
 
-  updatePageSize(pageSize:number){
+  // ngAfterViewChecked() {
+  //   window.scrollTo(0, 0);
+  // }
+
+  updatePageSize(pageSize: number) {
     this.thePageSize = pageSize;
     this.thePageNumber = 1;
     this.listProducts();
@@ -73,16 +78,16 @@ export class ProductListComponent implements OnInit {
     const searchword = this.route.snapshot.paramMap.get('keyword');
     this.theKeyword = searchword;
 
-    if(this.previousKeyword != this.theKeyword){
-      this.previousKeyword= this.theKeyword;
-      this.thePageNumber=1;
-      }
+    if (this.previousKeyword != this.theKeyword) {
+      this.previousKeyword = this.theKeyword;
+      this.thePageNumber = 1;
+    }
 
     // now search for the products using keyword
     this.productService.SearchProductPaginate(this.thePageNumber - 1,
       this.thePageSize, searchword).subscribe(
         this.processResult()
-    )
+      )
   }
 
 
@@ -103,16 +108,16 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryName = 'Books';
     }
 
-    if(this.previousCategoryId != this.currentCategoryId){
-    this.previousCategoryId= this.currentCategoryId;
-    this.thePageNumber=1;
+    if (this.previousCategoryId != this.currentCategoryId) {
+      this.previousCategoryId = this.currentCategoryId;
+      this.thePageNumber = 1;
     }
 
     this.productService.getProductListPaginate(this.thePageNumber - 1,
       this.thePageSize,
       this.currentCategoryId)
       .subscribe(this.processResult());
-    
+
   }
 
   processResult() {
@@ -125,7 +130,7 @@ export class ProductListComponent implements OnInit {
   }
 
   addToCart(theProduct: Product) {
-    
+
     console.log(`Adding to cart: ${theProduct.name}, ${theProduct.unitPrice}`);
 
     // transform theProduct into theCartItem by using constructor

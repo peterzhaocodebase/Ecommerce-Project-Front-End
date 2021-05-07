@@ -21,6 +21,10 @@ export class CartDetailsComponent implements OnInit {
     this.listCartDetails();
   }
 
+  ngAfterViewChecked() {
+    window.scrollTo(0, 0);
+  }
+
   listCartDetails() {
 
     this.cartItems = this.cartService.cartItems;
