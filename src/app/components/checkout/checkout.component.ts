@@ -14,13 +14,18 @@ export class CheckoutComponent implements OnInit {
 
   totalPrice: number = 0;
   totalQuantity: number = 0;
-  
+
+  months: number[] = [];
+  years: number[] = [];
+
+  startMonth: number =new Date().getMonth()+1;
+
   constructor(private formBuilder: FormBuilder,
-              private PopulateDateService: PopulateDateService
-    ) { }
+    private PopulateDateService: PopulateDateService
+  ) { }
 
   ngOnInit(): void {
-    
+
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: [''],
@@ -50,22 +55,60 @@ export class CheckoutComponent implements OnInit {
         expirationYear: ['']
       })
     });
+
+    this.PopulateDateService.getMonthsArray(this.startMonth).subscribe(
+      data => {
+        this.months = data;
+      }
+    );
+
+    this.PopulateDateService.getYearsArray().subscribe(
+      data => {
+        this.years = data;
+      }
+    );
+
+    window.scrollTo(0, 0);
+
+
   }
 
-  ngAfterViewChecked() {
-    window.scrollTo(0, 0);
+  handleSelectedYear() {
+    const creditCardFormGroup = this.checkoutFormGroup.get('creditCard');
+    const selectedYear: number = Number(creditCardFormGroup.value.expirationYear);
+
+    const currentYear: number = new Date().getFullYear();
+
+
+    if (selectedYear !== currentYear){
+      this.startMonth = 1;
+    }else{
+      this.startMonth = new Date().getMonth()+1;
+    }
+
+    this.PopulateDateService.getMonthsArray(this.startMonth).subscribe(
+      data => {
+        this.months = data;
+      }
+    );
+
   }
+
+
+  // ngAfterViewChecked() {
+
+  // }
 
   copyShippingAddressToBillingAddress(event) {
 
     if (event.target.checked) {
       this.checkoutFormGroup.controls.billingAddress
-            .setValue(this.checkoutFormGroup.controls.shippingAddress.value);
+        .setValue(this.checkoutFormGroup.controls.shippingAddress.value);
     }
     else {
       this.checkoutFormGroup.controls.billingAddress.reset();
     }
-    
+
   }
 
   onSubmit() {

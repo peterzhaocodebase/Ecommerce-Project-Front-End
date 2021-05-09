@@ -19,11 +19,12 @@ export class CartDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.listCartDetails();
-  }
-
-  ngAfterViewChecked() {
     window.scrollTo(0, 0);
   }
+
+  // ngAfterViewChecked() {
+    
+  // }
 
   listCartDetails() {
 

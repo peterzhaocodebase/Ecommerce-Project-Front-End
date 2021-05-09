@@ -31,10 +31,11 @@ export class ProductListComponent implements OnInit {
 
 
   ngOnInit() {
-
+    
     this.route.paramMap.subscribe(() => {
       this.listProducts();
     });
+    
   }
 
   // ngAfterViewChecked() {
@@ -48,7 +49,7 @@ export class ProductListComponent implements OnInit {
   }
 
   listProducts() {
-
+    window.scrollTo(0, 0);
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
 
     if (this.searchMode) {
