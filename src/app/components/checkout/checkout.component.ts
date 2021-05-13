@@ -1,6 +1,8 @@
-import { PopulateDateService } from './../../services/populate-date.service';
+import { CheckoutFormService } from '../../services/checkoutform.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Country } from 'src/app/common/country';
+import { State } from 'src/app/common/state';
 
 @Component({
   selector: 'app-checkout',
@@ -17,11 +19,15 @@ export class CheckoutComponent implements OnInit {
 
   months: number[] = [];
   years: number[] = [];
+  startMonth: number = new Date().getMonth() + 1;
 
-  startMonth: number =new Date().getMonth()+1;
+  countries: Country[] = [];
+  shippingAddressStates: State[] = [];
+  billingAddressStates: State[] = [];
+
 
   constructor(private formBuilder: FormBuilder,
-    private PopulateDateService: PopulateDateService
+    private checkoutFormService: CheckoutFormService
   ) { }
 
   ngOnInit(): void {
@@ -56,19 +62,22 @@ export class CheckoutComponent implements OnInit {
       })
     });
 
-    this.PopulateDateService.getMonthsArray(this.startMonth).subscribe(
+    this.checkoutFormService.getMonthsArray(this.startMonth).subscribe(
       data => {
         this.months = data;
       }
     );
 
-    this.PopulateDateService.getYearsArray().subscribe(
+    this.checkoutFormService.getYearsArray().subscribe(
       data => {
         this.years = data;
       }
     );
 
     window.scrollTo(0, 0);
+
+    this.listCountries();
+
 
 
   }
@@ -80,13 +89,13 @@ export class CheckoutComponent implements OnInit {
     const currentYear: number = new Date().getFullYear();
 
 
-    if (selectedYear !== currentYear){
+    if (selectedYear !== currentYear) {
       this.startMonth = 1;
-    }else{
-      this.startMonth = new Date().getMonth()+1;
+    } else {
+      this.startMonth = new Date().getMonth() + 1;
     }
 
-    this.PopulateDateService.getMonthsArray(this.startMonth).subscribe(
+    this.checkoutFormService.getMonthsArray(this.startMonth).subscribe(
       data => {
         this.months = data;
       }
@@ -94,6 +103,21 @@ export class CheckoutComponent implements OnInit {
 
   }
 
+  getState(formGroup: string) {
+    const FormGroup = this.checkoutFormGroup.get(formGroup);
+    const selectedCountry: string = String(FormGroup.value.country.code);
+    this.checkoutFormService.getStatesArray(selectedCountry).subscribe(
+      data => {
+        if (formGroup == "shippingAddress") {
+          this.shippingAddressStates = data;
+        }
+        else {
+          this.billingAddressStates = data;
+        }
+      }
+    );
+
+  }
 
   // ngAfterViewChecked() {
 
@@ -104,10 +128,21 @@ export class CheckoutComponent implements OnInit {
     if (event.target.checked) {
       this.checkoutFormGroup.controls.billingAddress
         .setValue(this.checkoutFormGroup.controls.shippingAddress.value);
+        this.billingAddressStates = this.shippingAddressStates;
     }
     else {
       this.checkoutFormGroup.controls.billingAddress.reset();
+      this.billingAddressStates = [];
     }
+
+  }
+
+  listCountries() {
+    this.checkoutFormService.getCountryArray().subscribe(
+      data => {
+        this.countries = data;
+      }
+    );
 
   }
 

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PopulateDateService } from './populate-date.service';
+import { CheckoutFormService } from './checkoutform.service';
 
 describe('PopulateDateService', () => {
-  let service: PopulateDateService;
+  let service: CheckoutFormService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PopulateDateService);
+    service = TestBed.inject(CheckoutFormService);
   });
 
   it('should be created', () => {
