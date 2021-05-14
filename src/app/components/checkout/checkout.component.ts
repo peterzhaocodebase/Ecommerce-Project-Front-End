@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
+import { FieldValidators } from 'src/app/validators/field-validators';
 
 @Component({
   selector: 'app-checkout',
@@ -34,8 +35,8 @@ export class CheckoutComponent implements OnInit {
 
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+        firstName: new FormControl('', [Validators.required,Validators.minLength(2),FieldValidators.notOnlyWhitespace]),
+        lastName: new FormControl('', [Validators.required, Validators.minLength(2), FieldValidators.notOnlyWhitespace]),
         email: new FormControl('',
           [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
       }),
@@ -158,7 +159,7 @@ export class CheckoutComponent implements OnInit {
     console.log("Handling the submit button");
     console.log(this.checkoutFormGroup.get('customer').value);
     console.log("The email address is " + this.checkoutFormGroup.get('customer').value.email);
-   
+
     if (this.checkoutFormGroup.invalid) {
       this.checkoutFormGroup.markAllAsTouched();
     }
