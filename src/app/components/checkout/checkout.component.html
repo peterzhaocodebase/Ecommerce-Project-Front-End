@@ -208,23 +208,27 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-2"> <label>Expiration Month</label></div>
+                        <div class="col-md-2"> <label>Expiration Year</label></div>
                         <div class="col-md-9">
                             <div class="input-space">
-                                <select formControlName="expirationMonth">
-                                    <option *ngFor="let tempMonth of months">{{tempMonth}}</option>
-                                </select> 
+                                <select formControlName="expirationYear" (change)="handleSelectedYear()">
+                                    <option *ngFor="let tempYear of years" [ngValue]="tempYear">
+                                        {{tempYear}}
+                                    </option>
+                                </select>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-2"> <label>Expiration Year</label></div>
+                        <div class="col-md-2"> <label>Expiration Month</label></div>
                         <div class="col-md-9">
                             <div class="input-space">
-                                <select formControlName="expirationYear" (change)="handleSelectedYear()">
-                                    <option *ngFor="let tempYear of years">{{tempYear}}</option>
-                                </select>
+                                <select formControlName="expirationMonth">
+                                    <option *ngFor="let tempMonth of months" [ngValue]="tempMonth">
+                                        {{tempMonth}}
+                                    </option>
+                                </select> 
                             </div>
                         </div>
                     </div>
