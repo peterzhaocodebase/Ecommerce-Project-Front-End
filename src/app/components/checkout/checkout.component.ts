@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
 import { FieldValidators } from 'src/app/validators/field-validators';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -28,6 +29,7 @@ export class CheckoutComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder,
+    private cartService: CartService,
     private checkoutFormService: CheckoutFormService
   ) { }
 
@@ -35,27 +37,27 @@ export class CheckoutComponent implements OnInit {
 
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: new FormControl('', [Validators.required,Validators.minLength(2),FieldValidators.notOnlyWhitespace]),
+        firstName: new FormControl('', [Validators.required, Validators.minLength(2), FieldValidators.notOnlyWhitespace]),
         lastName: new FormControl('', [Validators.required, Validators.minLength(2), FieldValidators.notOnlyWhitespace]),
-        email: new FormControl('',[Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
+        email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
       }),
       shippingAddress: this.formBuilder.group({
-        street:  new FormControl('', [Validators.required,Validators.minLength(2),FieldValidators.notOnlyWhitespace]),
-        city:  new FormControl('', [Validators.required,Validators.minLength(2),FieldValidators.notOnlyWhitespace]),
-        state:  new FormControl('', [Validators.required]),
-        country:  new FormControl('', [Validators.required]),
-        zipCode:  new FormControl('', [Validators.required,Validators.minLength(2),FieldValidators.notOnlyWhitespace])
-      }),
-      billingAddress: this.formBuilder.group({
-        street: new FormControl('', [Validators.required, Validators.minLength(2),FieldValidators.notOnlyWhitespace]),
-        city: new FormControl('', [Validators.required, Validators.minLength(2),FieldValidators.notOnlyWhitespace]),
+        street: new FormControl('', [Validators.required, Validators.minLength(2), FieldValidators.notOnlyWhitespace]),
+        city: new FormControl('', [Validators.required, Validators.minLength(2), FieldValidators.notOnlyWhitespace]),
         state: new FormControl('', [Validators.required]),
         country: new FormControl('', [Validators.required]),
-        zipCode: new FormControl('', [Validators.required, Validators.minLength(2),FieldValidators.notOnlyWhitespace])
+        zipCode: new FormControl('', [Validators.required, Validators.minLength(2), FieldValidators.notOnlyWhitespace])
+      }),
+      billingAddress: this.formBuilder.group({
+        street: new FormControl('', [Validators.required, Validators.minLength(2), FieldValidators.notOnlyWhitespace]),
+        city: new FormControl('', [Validators.required, Validators.minLength(2), FieldValidators.notOnlyWhitespace]),
+        state: new FormControl('', [Validators.required]),
+        country: new FormControl('', [Validators.required]),
+        zipCode: new FormControl('', [Validators.required, Validators.minLength(2), FieldValidators.notOnlyWhitespace])
       }),
       creditCard: this.formBuilder.group({
         cardType: new FormControl('', [Validators.required]),
-        nameOnCard:  new FormControl('', [Validators.required, Validators.minLength(2),FieldValidators.notOnlyWhitespace]),
+        nameOnCard: new FormControl('', [Validators.required, Validators.minLength(2), FieldValidators.notOnlyWhitespace]),
         cardNumber: new FormControl('', [Validators.required, Validators.pattern('[0-9]{16}')]),
         securityCode: new FormControl('', [Validators.required, Validators.pattern('[0-9]{3}')]),
         expirationMonth: new FormControl('', [Validators.required]),
@@ -79,7 +81,7 @@ export class CheckoutComponent implements OnInit {
 
     this.listCountries();
 
-
+    this.updateCartStatus();
 
   }
 
@@ -186,6 +188,19 @@ export class CheckoutComponent implements OnInit {
     console.log("The shipping address country is " + this.checkoutFormGroup.get('shippingAddress').value.country.name);
     console.log("The shipping address state is " + this.checkoutFormGroup.get('shippingAddress').value.state.name);
 
+  }
+
+  updateCartStatus() {
+
+    // subscribe to the cart totalPrice
+    this.cartService.totalPrice.subscribe(
+      data => this.totalPrice = data
+    );
+
+    // subscribe to the cart totalQuantity
+    this.cartService.totalQuantity.subscribe(
+      data => this.totalQuantity = data
+    );
   }
 
 }

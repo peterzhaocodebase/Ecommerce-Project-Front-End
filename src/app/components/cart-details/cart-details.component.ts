@@ -40,7 +40,7 @@ export class CartDetailsComponent implements OnInit {
       data => this.totalQuantity = data
     );
 
-    this.cartService.computeCartTotals();
+    //this.cartService.computeCartTotals();
 
   }
 
