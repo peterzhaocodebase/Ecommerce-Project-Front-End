@@ -8,7 +8,9 @@ import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 export class CartService {
 
   cartItems: CartItem[] = [];
-  storage: Storage = sessionStorage;
+ // storage: Storage = sessionStorage;
+  storage: Storage = localStorage;
+
 
   totalPrice: Subject<number> = new BehaviorSubject<number>(0);
   totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
