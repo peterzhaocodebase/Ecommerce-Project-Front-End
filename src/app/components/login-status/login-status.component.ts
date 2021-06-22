@@ -39,8 +39,13 @@ export class LoginStatusComponent implements OnInit {
           this.userFullName = res.name;
 
           const theEmail = res.email;
-
           this.storage.setItem('userEmail',JSON.stringify(theEmail));
+
+          const firstName = res.given_name;
+          this.storage.setItem('userFirstName',JSON.stringify(firstName));
+
+          const lastName = res.family_name
+          this.storage.setItem('userLastName',JSON.stringify(lastName));
         }
       );
     }
