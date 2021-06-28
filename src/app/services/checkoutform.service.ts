@@ -10,8 +10,8 @@ import { State } from '../common/state';
 })
 export class CheckoutFormService {
 
-  private countriesUrl = 'http://localhost:8080/api/countries';
-  private statesUrl = 'http://localhost:8080/api/states';
+  private countriesUrl = 'http://Shoponaws-env.eba-xgqguzsp.us-east-2.elasticbeanstalk.com/api/countries';
+  private statesUrl = 'http://Shoponaws-env.eba-xgqguzsp.us-east-2.elasticbeanstalk.com/api/states';
 
   constructor(private httpClient: HttpClient) { }
 

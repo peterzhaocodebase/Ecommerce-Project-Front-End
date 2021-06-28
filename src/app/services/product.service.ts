@@ -11,8 +11,8 @@ import { ProductCategory } from '../common/product-category';
 
 export class ProductService {
 
-  private baseUrl = 'http://localhost:8080/api/products';
-  private categoryUrl = 'http://localhost:8080/api/product-category';
+  private baseUrl = 'http://Shoponaws-env.eba-xgqguzsp.us-east-2.elasticbeanstalk.com/api/products';
+  private categoryUrl = 'http://Shoponaws-env.eba-xgqguzsp.us-east-2.elasticbeanstalk.com/api/product-category';
 
   constructor(private httpClient: HttpClient) { }
 
