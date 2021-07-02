@@ -30,7 +30,6 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
 const oktaConfig = Object.assign({
   onAuthRequired: (oktaAuth, injector) => {
     const router = injector.get(Router);
-
     // Redirect the user to your custom login page
     router.navigate(['/login']);
   }
@@ -39,10 +38,8 @@ const oktaConfig = Object.assign({
 const routes: Routes = [
   {path: 'order-history', component: OrderHistoryComponent, canActivate: [OktaAuthGuard]},
   {path: 'members', component: MembersPageComponent, canActivate: [OktaAuthGuard]},
-
   {path: 'login/callback', component: OktaCallbackComponent},
   {path: 'login', component: LoginComponent},
-
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart-details', component: CartDetailsComponent},
   {path: 'products/:id/:catId/:name', component: ProductDetailsComponent},  
@@ -70,7 +67,7 @@ const routes: Routes = [
     OrderHistoryComponent
   ],
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     BrowserModule,
     HttpClientModule,
     NgbModule,
