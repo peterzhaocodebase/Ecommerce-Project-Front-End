@@ -8,7 +8,7 @@ import { OrderHistory } from '../common/order-history';
 })
 export class OrderHistoryService {
   
-  private orderUrl = 'http://Shoponaws-env.eba-xgqguzsp.us-east-2.elasticbeanstalk.com/api/orders';
+  private orderUrl = 'https://backend.peterzhaocodecase.com/api/orders';
   
   constructor(private HttpClient:HttpClient) { }
   
