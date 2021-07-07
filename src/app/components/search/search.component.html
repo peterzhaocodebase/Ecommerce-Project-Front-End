@@ -2,10 +2,10 @@
 
     <input #myInput type="text" 
            placeholder="Search for products ..."
-           class="au-input au-input-xl"
+           class="au-input au-input-xl col-md-11"
            (keyup.enter)="doSearch(myInput.value)"  />
 
-    <button (click)="doSearch(myInput.value)" class="au-btn-submit">
+    <button (click)="doSearch(myInput.value)" class="au-btn-submit col-md-1">
         Search
     </button>
 

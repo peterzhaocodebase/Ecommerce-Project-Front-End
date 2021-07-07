@@ -1,8 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
 /* 
- * ----------------------------
+ * -----------------------------------------------------------------------------------------
  * Common CSS
- * ----------------------------
+ * -----------------------------------------------------------------------------------------
  */
 
  *{
@@ -100,7 +99,12 @@ a,a:hover{
     transition:all .3s ease
 }
 
-/*Layout Css*/
+
+
+
+/*
+-------Layout Css-----------------------------------------------------------------------------------------
+*/
 .section-content-p35{
     padding:0 35px
 }
@@ -128,14 +132,17 @@ aside.menu-sidebar.d-none.d-lg-block.clr{
     box-shadow:-2px 0 4px #0000003b
 }
 
+
+
+
 /* 
- * ----------------------------
+ * -----------------------------------------------------------------------------------------
  * Header Desktop Section
- * ----------------------------
+ * -----------------------------------------------------------------------------------------
  */
 
-.header-desktop{
-    background:#0da8e4;
+ .header-desktop{
+    background:#000000;
     -webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
     -moz-box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
     box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
@@ -215,11 +222,11 @@ section{
 }
 
 .au-input-xl{
-    min-width:935px
+    
 }
 
 input.au-input.au-input-xl{
-    border-radius:40px!important;
+    border-radius:2px!important;
     margin-right:15px
 }
 
@@ -243,32 +250,34 @@ input.au-input.au-input-xl{
 }
 
 .cart-area i{
-    font-size:22px;
-    float:left;
-    margin-top:16px;
-    color:#fff;
-    margin-left:15px
+    font-size: 29px;
+    float: right;
+    color: #c3d7f5;
+    margin-left: -30px;
+    margin-top: 12px;
 }
 
 .total{
-    background:#205b8d;
-    line-height:43px;
+    background:#000000;
+    line-height:44px;
     color:#fff;
-    border-radius:30px;
-    border:1px solid #0da8e4;
+    font-weight: 500;
+    border-radius:9px;
+    border:2px solid #000000;
     float:left;
     margin-top:7px;
-    padding-left:17px
+    padding-left:17px;
+    padding-right:17px;
+}
+.total:hover{
+    border:2px solid #0d6efd;
 }
 
 .total span{
     display:inline-block;
-    background:#fff;
-    padding:0 13px;
-    color:#000;
-    border-top-right-radius:20px;
-    border-bottom-right-radius:20px;
-    margin-left:11px
+    padding-right:21px;
+    color:rgb(0, 0, 0);
+    margin-right: -14px;
 }
 
 .form-header{
@@ -284,15 +293,18 @@ input.au-input.au-input-xl{
     right:0;
     min-width:95px;
     color:#fff;
-    border:1px solid #205b8d;
+    font-weight: 500;
+    border:2px solid #000000;
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
-    border-radius:43px;
-    background:#205b8d
+    border-radius:2px;
+    background:#000000
 }
 
 .au-btn-submit:hover{
-    background:#05143f
+    color:rgb(0, 0, 0);
+    border:2px solid #000000;
+    background:#0d6efd
 }
 
 .au-btn-submit>i{
@@ -308,13 +320,15 @@ input.au-input.au-input-xl{
     transform:translate(-50%,-50%)
 }
 
+
+
 /* 
- * ----------------------------
+ * -----------------------------------------------------------------------------------------
  * Left Menu Bar
- * ----------------------------
+ * -----------------------------------------------------------------------------------------
  */
 
-.menu-sidebar{
+ .menu-sidebar{
     width:200px;
     position:fixed;
     left:0;
@@ -344,6 +358,9 @@ input.au-input.au-input-xl{
     border-right:1px solid #e5e5e5;
     position:relative;
     z-index:3
+}
+.home-logo-image{
+    height: 72px;
 }
 
 .menu-sidebar .navbar-list .navbar-sub-list{
@@ -382,13 +399,16 @@ input.au-input.au-input-xl{
     color:#0da8e4
 }
 
+
+
+
 /* 
- * ----------------------------
+ * -----------------------------------------------------------------------------------------
  * Header Mobile Section
- * ----------------------------
+ * -----------------------------------------------------------------------------------------
  */
 
-.header-mobile{
+ .header-mobile{
     position:absolute;
     top:0;
     left:0;
@@ -518,13 +538,15 @@ input.au-input.au-input-xl{
     padding: 10% 30% 10% 5%
 }
 
+
+
 /* 
- * ----------------------------
+ * -----------------------------------------------------------------------------------------
  * Products List
- * ----------------------------
+ * -----------------------------------------------------------------------------------------
  */
 
-.product-box img {
+ .product-box img {
     width: 150px;
 }
 
@@ -560,179 +582,11 @@ input.au-input.au-input-xl{
     color:#585858
 }
 
-/* 
- * ----------------------------
- * Shopping Cart Checkout
- * ----------------------------
- */
-
-.form-area{
-    background:#e5e5e5;
-    position:relative;
-    margin-bottom:45px;
-    padding:50px 20px;
-    border:3px solid #ccc
-}
-.form-area h3{
-    position:absolute;
-    top:-26px;
-    left:13px;
-    background:#e5e5e5;
-    padding:10px 20px;
-    font-weight:500;
-    z-index:23;
-    display:inline-block
-}
-.input-space{
-    margin-bottom:20px
-}
-.input-space label{
-    padding-left:31px;
-    font-size:14px;
-    margin-bottom:50px
-}
-.input-space input[type=text]{
-    width:100%;
-    height:40px;
-    border-radius:30px;
-    outline:0;
-    padding:10px;
-    border:1px solid #ccc
-}
-.input-space select{
-    width:100%;
-    height:40px;
-    border-radius:30px;
-    outline:0;
-    padding:0 10px;
-    border:1px solid #ccc
-}
-.au-checkbox{
-    display:block;
-    position:relative;
-    cursor:pointer;
-    font-size:22px;
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none
-}
-.au-checkbox input{
-    position:absolute;
-    opacity:0;
-    cursor:pointer
-}
-.au-checkmark{
-    position:absolute;
-    top:0;
-    left:0;
-    height:22px;
-    width:22px;
-    background-color:#fff!important;
-    border:2px solid #e5e5e5;
-    -webkit-border-radius:2px;
-    -moz-border-radius:2px;
-    border-radius:2px
-}
-.au-checkbox:hover input~.au-checkmark{
-    background-color:transparent
-}
-.au-checkbox input:checked~.au-checkmark{
-    background-color:#fff
-}
-.au-checkmark:after{
-    content:"";
-    position:absolute;
-    display:none
-}
-.au-checkbox input:checked~.au-checkmark:after{
-    display:block
-}
-label.date{
-    padding-top:8px
-}
-.au-checkbox .au-checkmark:after{
-    left:5px;
-    top:-1px;
-    width:9px;
-    height:15px;
-    border:solid #0da8e4;
-    border-width:0 4px 4px 0;
-    -webkit-border-radius:2px;
-    -moz-border-radius:2px;
-    border-radius:2px;
-    -webkit-transform:rotate(45deg);
-    -moz-transform:rotate(45deg);
-    -ms-transform:rotate(45deg);
-    -o-transform:rotate(45deg);
-    transform:rotate(45deg)
-}
-option:first{
-    color:#ccc
-}
-select{
-    color:#828482
-}
 
 /* 
- * ----------------------------
- * Shopping Cart Details
- * ----------------------------
- */
-
-.table{
-    margin:0
-}
-table.table.table-bordered{
-    border:1px solid #ccc;
-    background:#fff
-}
-.table-bordered td,.table-bordered th{
-    border:1px solid #dee2e6
-}
-table.table.table-bordered th{
-    BACKGROUND:#0da8e4;
-    color:#fff;
-    font-size:14px;
-    padding:7px
-}
-.table-responsive{
-    padding-right:1px
-}
-.items select{
-    width:100px;
-    height:40px;
-    border-radius:40px;
-    padding-left:15px;
-    margin-bottom:10px;
-    outline:0;
-    margin-left:5px
-}
-
-/* 
- * ----------------------------
- * Product Details
- * ----------------------------
- */
-
- .price{
-    margin:15px 0 0;
-    font-weight:800;
-    color:#0da8e4
-}
-.detail-section{
-    margin-top:60px
-}
-
-.detail-img{
-    width:30%;
-}
-/**/
-
-/* 
- * ----------------------------
+ * -----------------------------------------------------------------------------------------
  * Buttons
- * ----------------------------
+ * -----------------------------------------------------------------------------------------
  */
 
  .btn-info{
@@ -759,13 +613,14 @@ a.primary-btn:hover{
   font-weight: bold;
 }
 
+
 /* 
- * ----------------------------
+ * -----------------------------------------------------------------------------------------
  * Footer section
- * ----------------------------
+ * -----------------------------------------------------------------------------------------
  */
 
-footer ul li a{
+ footer ul li a{
     color:#fff
 }
 footer{
@@ -784,262 +639,3 @@ footer ul li{
     padding:10px 20px
 }
 
-/* 
- * ----------------------------
- * Media Queries
- * ----------------------------
- */
-
-@media (max-width:1600px){
-    .au-input-xl{
-        min-width:290px
-    }
-}
-@media (max-width:1315px) and (min-width:992px){
-    .header-desktop3 .section-content{
-        padding:0 15px
-    }
-}
-@media (max-width:1570px) and (min-width:992px){
-    .header-navbar ul li a{
-        padding:25px 15px
-    }
-}
-@media (max-width:1315px) and (min-width:992px){
-    .header-navbar ul li a{
-        font-size:13px;
-        padding:27px 15px
-    }
-    .header-navbar ul li a i{
-        margin-right:5px
-    }
-}
-
-@media (min-width:1200px){
-    .container{
-        max-width:1320px
-    }
-}
-
-@media (min-width:992px) and (max-width:1199px){
-    .cart-area i{
-        font-size:22px;
-        float:left;
-        margin-top:16px;
-        color:#205b8d;
-        margin-left:15px
-    }
-    .header-mobile .header-mobile-bar{
-        padding:10px 0;
-        background:#fff
-    }
-    .header-wrap .account-item>.content{
-        display:none
-    }
-}
-
-
-@media (max-width:991px){
-     .section-content-p30{
-        padding:0
-    }
-    .page-container{
-        position:relative;
-        top:88px;
-        padding-left:0
-    }
-     .page-wrapper{
-        background:#e5e5e5;
-        padding-bottom:12vh
-    }
-     .main-content{
-        padding-top:50px;
-        padding-bottom:100px
-    }
-     .cart-area.d-n{
-        display:none
-    }
-    .form-header{
-        -webkit-box-pack:center;
-        -webkit-justify-content:center;
-        -moz-box-pack:center;
-        -ms-flex-pack:center;
-        justify-content:center
-    }
-     .au-input-xl{
-        min-width:350px
-    }
-      .logo{
-        text-align:center
-    }
-    .header-desktop{
-        position:relative;
-        top:0;
-        left:0;
-        height:80px
-    }
-    .header-wrap{
-        -webkit-box-orient:vertical;
-        -webkit-box-direction:normal;
-        -webkit-flex-direction:column;
-        -moz-box-orient:vertical;
-        -moz-box-direction:normal;
-        -ms-flex-direction:column;
-        flex-direction:column
-    }
-    .header-button{
-        margin-top:30px;
-        width:100%;
-        -webkit-box-pack:justify;
-        -webkit-justify-content:space-between;
-        -moz-box-pack:justify;
-        -ms-flex-pack:justify;
-        justify-content:space-between
-    }
-    .menu-sidebar2{
-        top:0;
-        right:-300px;
-        left:auto;
-        -webkit-box-shadow:0 5px 10px 0 rgba(0,0,0,.1);
-        -moz-box-shadow:0 5px 10px 0 rgba(0,0,0,.1);
-        box-shadow:0 5px 10px 0 rgba(0,0,0,.1)
-    }
-     .header-desktop2{
-        left:0;
-        position:relative
-    }
-     .header-desktop4{
-        position:static
-    }
-     .section-content.section-content-p30.e-spc{
-        padding-top:100px
-    }
-    header.header-desktop.extra{
-        top:93px!important
-    }
-    .cart-area i{
-        font-size:22px;
-        float:left;
-        margin-top:16px;
-        color:#205b8d;
-        margin-left:15px
-    }
-        .header-wrap2{
-        -webkit-box-pack:justify;
-        -webkit-justify-content:space-between;
-        -moz-box-pack:justify;
-        -ms-flex-pack:justify;
-        justify-content:space-between
-    }
-}
-
-
-@media (max-width:767px){
-      .au-input-xl{
-        min-width:150px
-    }
-    .header-button-item{
-        font-size:22px;
-        margin-right:15px
-    }
-        .main-content.page-m{
-        padding:10% 0!important
-    }
-    .header-mobile .navbar-mobile{
-        display:none;
-        position:absolute;
-        width:100%;
-        top:66px;
-        z-index:20
-    }
-    .section-content.section-content-p30.e-spc{
-        padding-top:100px
-    }
-    header.header-desktop.extra{
-        top:64px!important
-    }
-    .header-desktop{
-        position:relative;
-        top:0;
-        left:0;
-        height:80px
-    }
-    a.logo img{
-        width:110px
-    }
-
-    .cart-area i{
-        font-size:22px;
-        float:left;
-        margin-top:16px;
-        color:#205b8d;
-        margin-left:15px
-    }
-    .footer-pagination{
-        text-align:center;
-    }
-    .pageSelector{
-         display:inline-block !important;
-    }
-    .product-box{
-        text-align:centerg
-    }
-    .page-container{
-        position:relative;
-        top:66px;
-        padding-left:0
-    }
-    .au-btn-submit{
-        position:relative;
-        right:10px;
-        min-width:85px;
-        color:#fff;
-        border:1px solid #205b8d;
-        -webkit-border-radius:3px;
-        -moz-border-radius:3px;
-        border-radius:0;
-        background:#205b8d
-    }
-    input.au-input.au-input-xl{
-        border-radius:0!important;
-        margin-right:0
-    }
-    .cart-area.d-b{
-        display:block
-    }
-    .cart-area.d-n{
-        display:none
-    }
-    .cart-area i{
-        font-size:18px;
-        float:left;
-        margin-top:16px;
-        color:#03a9f4;
-        margin-left:15px
-    }
-    .total span{
-        display:inline-block;
-        background:#fff;
-        padding:0 10px;
-        color:#000;
-        border-top-right-radius:20px;
-        border-bottom-right-radius:20px;
-        margin-left:6px
-    }
-    .total{
-        background:#205b8d;
-        line-height:30px;
-        color:#fff;
-        border-radius:30px;
-        border:1px solid #205b8d;
-        float:left;
-        margin-top:9px;
-        padding-left:12px
-    }
-    .header-mobile .header-mobile-bar{
-        padding:6px 0;
-        background:#fff;
-        border:0;
-        padding:8px 0
-    }
-}

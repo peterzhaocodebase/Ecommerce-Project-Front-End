@@ -7,7 +7,7 @@
                 <hr>
             </div>
             <ng-template #elseBlock>
-                <h4>Current Category: {{ currentCategoryName }}</h4>
+                <h5>Current Category: {{ currentCategoryName }}</h5>
                 <hr>
             </ng-template>
             <div *ngIf="products?.length ==0" class="alert alert-warning col-md-12" role="alert">
@@ -21,7 +21,7 @@
                 <div *ngFor="let tempProduct of products" class="col-md-3">
                     <div class="product-box">
                         <div>
-                            <a routerLink="/products/{{ tempProduct.id }}/{{currentCategoryId}}/{{currentCategoryName}}">
+                            <a routerLink="/products/{{ tempProduct.id }}/{{currentCategoryId}}/{{currentCategoryName}}" class="product-list-a">
                                 <img src="{{ tempProduct.imageUrl }}" class="img-responsive">
                                 <h1>{{ tempProduct.name }}</h1>
                             </a>
